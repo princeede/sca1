@@ -91,4 +91,59 @@
 
     </main><!-- /.container -->
 
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Add A New Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="/newProject">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Project Title</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>                
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Description</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>                
+                  <div class="row">
+                    <div class="col-6">
+                        <label for="exampleFormControlInput1">Project Duration </label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="in months">
+                    </div>
+                    <div class="col-6">
+                        <label for="exampleFormControlInput1">Project Cost</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="in M$">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleFormControlSelect1">Sector</label>
+                      <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Agriculture</option>
+                        <option>Education</option>
+                        <option>Health</option>
+                        <option>Infrastructure</option>
+                        <option>Oil & Gas</option>
+                      </select>
+                    </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
    
