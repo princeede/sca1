@@ -99,6 +99,8 @@
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-top" role="document">
+      <!-- Modal Form -->
+        <form method="POST" action="/new-project">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalCenterTitle">Add A New Project</h5>
@@ -107,28 +109,28 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="/newProject">
+            
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Project Title</label>
-                  <input type="text" class="form-control" id="title" placeholder="">
+                  <input type="text" class="form-control" name="title" id="title" placeholder="">
                 </div>                
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea class="form-control" id="description" rows="3"></textarea>
+                  <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                 </div>                
                   <div class="row">
                     <div class="col-6">
                         <label for="exampleFormControlInput1">Project Duration </label>
-                        <input type="text" class="form-control" id="duration" placeholder="in months">
+                        <input type="text" class="form-control" name="duration" id="duration" placeholder="in months">
                     </div>
                     <div class="col-6">
                         <label for="exampleFormControlInput1">Project Cost</label>
-                        <input type="text" class="form-control" id="cost" placeholder="in M$">
+                        <input type="text" class="form-control" name="cost" id="cost" placeholder="in M$">
                     </div>
                   </div>
                   <div class="form-group">
                       <label for="exampleFormControlSelect1">Sector</label>
-                      <select class="form-control" id="sector">
+                      <select class="form-control" name="sector" id="sector">
                         <option value="agriculture">Agriculture</option>
                         <option value="education">Education</option>
                         <option value="health">Health</option>
@@ -138,16 +140,17 @@
                       </select>
                     </div>
                     <div class="form-group">
-                        <label for="media">Example file input</label>
+                        <label for="media">Uplaod media</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1">
                       </div>
-              </form>
+              
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
       </div>
+    </form>
     </div>
   </div>
 

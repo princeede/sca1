@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -21,6 +22,7 @@ func main() {
 	http.HandleFunc("/", myHomePage)
 	http.HandleFunc("/signup", signup)
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/new-project", newProject)
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal("ListenAndServer: ", err)
@@ -68,22 +70,31 @@ func newProject(w http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
 		err := req.ParseForm()
 		if err != nil {
-
+			fmt.Print("We good")
 		}
 		title := req.FormValue("title")
-		description := req.FormValue("decscription")
+		description := req.FormValue("description")
 		duration, _ := strconv.ParseFloat(req.FormValue("duration"), 64)
 		cost, _ := strconv.ParseFloat(req.FormValue("cost"), 64)
 		sector := req.FormValue("sector")
 		time := time.Now()
 
-		t, err := myTemplate("temp")
-		if err != nil {
-			t.ExecuteTemplate(w, "header.html", nil)
-			t.ExecuteTemplate(w, "temp.html", nil)
-			t.ExecuteTemplate(w, "footer.html", Project{title, description, duration, cost, sector, time})
-		}
+		t, err := template.ParseFiles("src/sca1/templates/temp.html", "src/sca1/templates/header.html", "src/sca1/templates/footer.html")
+		// if err != nil {
+		t.ExecuteTemplate(w, "header.html", nil)
+		t.ExecuteTemplate(w, "temp.html", Project{title, description, duration, cost, sector, time})
+		t.ExecuteTemplate(w, "footer.html", nil)
 
+		fmt.Println(title)
+		fmt.Println(description)
+		fmt.Println(duration)
+		fmt.Println(cost)
+		fmt.Println(sector)
+		fmt.Println(time)
+		// }
+
+	} else {
+		fmt.Println("Method is get...")
 	}
 }
 
