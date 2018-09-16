@@ -1,0 +1,154 @@
+
+
+
+    <main role="main" class="container">
+
+            <div class="starter-template">
+              <!-- <h1>Bootstrap starter template</h1>
+              <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p> -->
+      
+              <!-- My Editing Starts from here -->
+              <div class="card mb-3">
+                  <img class="card-img-top" src="public/img/banner.jpg" alt="Card image cap">
+                  <div class="card-body flex-container my-body">
+                    <div class="my-profile-image">
+                      <img src="public/img/banner.jpg" alt="Profile picture">
+                      <small style="text-align: left;">Olagunju Abdul-Hammid</small>
+                    </div>
+                    <div class="my-body-content">
+                        <div class="my-body-flex-container">
+                            <div><h5 class="card-title" style="flex-grow: 10">{{.Title}}</h5></div>
+                            <div class="my-body-flex-container" style="flex-grow: 2; justify-content: flex-end; flex-wrap: wrap; max-height: 20px;">
+                              <div><span class="badge badge-light" style="margin-right: 10px">Cost: ${{.Cost}}M</span></div>
+                              <div><span class="badge badge-dark">Dur: {{.Duration}} months</span></div>
+                            </div>
+                          </div>
+                          <p class="card-text">{{.Description}}</p>
+                          <div class="my-card-footer" style="margin-bottom: 20px;">
+                              <div class="flex-container">
+                                  <div class="flex-container-buttons">
+                                      <div><button type="button" class="btn btn-outline-dark"> <small>Support</small></button></div>
+                                      <div><button type="button" class="btn btn-outline-dark"><small>Against</small></button></div>
+                                      <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+                                  </div>                
+                                  <div><small class="text-muted right">{{.Time}} ago</small></div>
+                                </div>
+                          </div> 
+                          <!-- Replies start here -->
+                          <div class="card-body flex-container my-reply">
+                              <div class="my-profile-image">
+                                <img src="public/img/banner.jpg" alt="Profile picture">
+                                <small style="text-align: left;">Olagunju Abdul-Hammid</small>
+                              </div>
+                              <div class="my-body-content">
+                                <p class="card-text">{{.Description}}</p>
+                                <div class="my-card-footer">
+                                    <div class="flex-container">
+                                        <div class="flex-container-buttons">
+                                            <div><button type="button" class="btn btn-outline-dark"> <small>Like</small></button></div>
+                                            <div><button type="button" class="btn btn-outline-dark"><small>Unlike</small></button></div>
+                                            <div><button type="button" class="btn btn-outline-dark"> <small>Reply</small></button></div>
+                                            <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+                                        </div>                
+                                        <div><small class="text-muted right">{{.Time}} ago</small></div>
+                                    </div>
+                                </div>    
+                              </div>                          
+                            </div>
+      
+                            <div class="card-body flex-container my-reply">
+                                <div class="my-profile-image">
+                                  <img src="public/img/banner.jpg" alt="Profile picture">
+                                  <small style="text-align: left;">Olagunju Abdul-Hammid</small>
+                                </div>
+                                <div class="my-body-content">
+                                  <p class="card-text">{{.Description}}</p>
+                                  <div class="my-card-footer">
+                                      <div class="flex-container">
+                                          <div class="flex-container-buttons">
+                                              <div><button type="button" class="btn btn-outline-dark"> <small>Like</small></button></div>
+                                              <div><button type="button" class="btn btn-outline-dark"><small>Unlike</small></button></div>
+                                              <div><button type="button" class="btn btn-outline-dark"> <small>Reply</small></button></div>
+                                              <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+                                          </div>                
+                                          <div><small class="text-muted right">{{.Time}} ago</small></div>
+                                      </div>
+                                  </div>    
+                                </div>                          
+                              </div>
+                            <!--Reply ends here...-->
+      
+      
+                    </div>   
+                    
+                    
+                    
+                  </div>
+      
+      
+                </div>
+            </div>
+      
+          </main><!-- /.container -->
+      
+          <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          Launch demo modal
+        </button> -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-top" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add A New Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <form method="POST" action="/newProject">
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Project Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="">
+                      </div>                
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Description</label>
+                        <textarea class="form-control" id="description" rows="3"></textarea>
+                      </div>                
+                        <div class="row">
+                          <div class="col-6">
+                              <label for="exampleFormControlInput1">Project Duration </label>
+                              <input type="text" class="form-control" id="duration" placeholder="in months">
+                          </div>
+                          <div class="col-6">
+                              <label for="exampleFormControlInput1">Project Cost</label>
+                              <input type="text" class="form-control" id="cost" placeholder="in M$">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Sector</label>
+                            <select class="form-control" id="sector">
+                              <option value="agriculture">Agriculture</option>
+                              <option value="education">Education</option>
+                              <option value="health">Health</option>
+                              <option value="infrastructure">Infrastructure</option>
+                              <option value="oil">Oil & Gas</option>
+                              <option></option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="media">Example file input</label>
+                              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                    </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+         

@@ -4,6 +4,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
+	"time"
 	// "text/template"
 )
 
@@ -50,4 +52,42 @@ func login(w http.ResponseWriter, req *http.Request) {
 	t.ExecuteTemplate(w, "login.html", nil)
 	t.ExecuteTemplate(w, "footer.html", nil)
 
+}
+
+//Project object represent each project
+type Project struct {
+	Title       string
+	Description string
+	Duration    float64
+	Cost        float64
+	Sector      string
+	Time        time.Time
+}
+
+func newProject(w http.ResponseWriter, req *http.Request) {
+	if req.Method == "POST" {
+		err := req.ParseForm()
+		if err != nil {
+
+		}
+		title := req.FormValue("title")
+		description := req.FormValue("decscription")
+		duration, _ := strconv.ParseFloat(req.FormValue("duration"), 64)
+		cost, _ := strconv.ParseFloat(req.FormValue("cost"), 64)
+		sector := req.FormValue("sector")
+		time := time.Now()
+
+		t, err := myTemplate("temp")
+		if err != nil {
+			t.ExecuteTemplate(w, "header.html", nil)
+			t.ExecuteTemplate(w, "temp.html", nil)
+			t.ExecuteTemplate(w, "footer.html", Project{title, description, duration, cost, sector, time})
+		}
+
+	}
+}
+
+func myTemplate(templateName string) (temp *template.Template, err error) {
+	t, err := template.ParseFiles("src/sca1/templates/"+templateName+".html", "src/sca1/templates/header.html", "src/sca1/templates/footer.html")
+	return t, err
 }

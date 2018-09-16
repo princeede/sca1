@@ -110,32 +110,37 @@
             <form method="POST" action="/newProject">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Project Title</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  <input type="text" class="form-control" id="title" placeholder="">
                 </div>                
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea class="form-control" id="description" rows="3"></textarea>
                 </div>                
                   <div class="row">
                     <div class="col-6">
                         <label for="exampleFormControlInput1">Project Duration </label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="in months">
+                        <input type="text" class="form-control" id="duration" placeholder="in months">
                     </div>
                     <div class="col-6">
                         <label for="exampleFormControlInput1">Project Cost</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="in M$">
+                        <input type="text" class="form-control" id="cost" placeholder="in M$">
                     </div>
                   </div>
                   <div class="form-group">
                       <label for="exampleFormControlSelect1">Sector</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Agriculture</option>
-                        <option>Education</option>
-                        <option>Health</option>
-                        <option>Infrastructure</option>
-                        <option>Oil & Gas</option>
+                      <select class="form-control" id="sector">
+                        <option value="agriculture">Agriculture</option>
+                        <option value="education">Education</option>
+                        <option value="health">Health</option>
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="oil">Oil & Gas</option>
+                        <option></option>
                       </select>
                     </div>
+                    <div class="form-group">
+                        <label for="media">Example file input</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                      </div>
               </form>
         </div>
         <div class="modal-footer">
