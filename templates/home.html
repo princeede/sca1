@@ -1,0 +1,94 @@
+
+
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <!-- <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p> -->
+
+        <!-- My Editing Starts from here -->
+        <div class="card mb-3">
+            <img class="card-img-top" src="public/img/banner.jpg" alt="Card image cap">
+            <div class="card-body flex-container my-body">
+              <div class="my-profile-image">
+                <img src="public/img/banner.jpg" alt="Profile picture">
+                <small style="text-align: left;">Olagunju Abdul-Hammid</small>
+              </div>
+              <div class="my-body-content">
+                  <div class="my-body-flex-container">
+                      <div><h5 class="card-title" style="flex-grow: 10">{{.Title}}</h5></div>
+                      <div class="my-body-flex-container" style="flex-grow: 2; justify-content: flex-end; flex-wrap: wrap; max-height: 20px;">
+                        <div><span class="badge badge-light" style="margin-right: 10px">Cost: $3M</span></div>
+                        <div><span class="badge badge-dark">Dur: 6 months</span></div>
+                      </div>
+                    </div>
+                    <p class="card-text">{{.Description}}</p>
+                    <div class="my-card-footer" style="margin-bottom: 20px;">
+                        <div class="flex-container">
+                            <div class="flex-container-buttons">
+                                <div><button type="button" class="btn btn-outline-dark"> <small>Support</small></button></div>
+                                <div><button type="button" class="btn btn-outline-dark"><small>Against</small></button></div>
+                                <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+                            </div>                
+                            <div><small class="text-muted right">{{.Time}} ago</small></div>
+                          </div>
+                    </div> 
+                    <!-- Replies start here -->
+                    <div class="card-body flex-container my-reply">
+                        <div class="my-profile-image">
+                          <img src="public/img/banner.jpg" alt="Profile picture">
+                          <small style="text-align: left;">Olagunju Abdul-Hammid</small>
+                        </div>
+                        <div class="my-body-content">
+                          <p class="card-text">{{.Description}}</p>
+                          <div class="my-card-footer">
+                              <div class="flex-container">
+                                  <div class="flex-container-buttons">
+                                      <div><button type="button" class="btn btn-outline-dark"> <small>Like</small></button></div>
+                                      <div><button type="button" class="btn btn-outline-dark"><small>Unlike</small></button></div>
+                                      <div><button type="button" class="btn btn-outline-dark"> <small>Reply</small></button></div>
+                                      <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+                                  </div>                
+                                  <div><small class="text-muted right">{{.Time}} ago</small></div>
+                              </div>
+                          </div>    
+                        </div>                          
+                      </div>
+
+                      <div class="card-body flex-container my-reply">
+                          <div class="my-profile-image">
+                            <img src="public/img/banner.jpg" alt="Profile picture">
+                            <small style="text-align: left;">Olagunju Abdul-Hammid</small>
+                          </div>
+                          <div class="my-body-content">
+                            <p class="card-text">{{.Description}}</p>
+                            <div class="my-card-footer">
+                                <div class="flex-container">
+                                    <div class="flex-container-buttons">
+                                        <div><button type="button" class="btn btn-outline-dark"> <small>Like</small></button></div>
+                                        <div><button type="button" class="btn btn-outline-dark"><small>Unlike</small></button></div>
+                                        <div><button type="button" class="btn btn-outline-dark"> <small>Reply</small></button></div>
+                                        <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+                                    </div>                
+                                    <div><small class="text-muted right">{{.Time}} ago</small></div>
+                                </div>
+                            </div>    
+                          </div>                          
+                        </div>
+                      <!--Reply ends here...-->
+
+
+              </div>   
+              
+              
+              
+            </div>
+
+
+          </div>
+      </div>
+
+    </main><!-- /.container -->
+
+   
