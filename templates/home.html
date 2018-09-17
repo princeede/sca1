@@ -100,7 +100,7 @@
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-top" role="document">
       <!-- Modal Form -->
-        <form method="POST" action="/new-project">
+        <form method="POST" enctype="multipart/form-data" action="/new-project">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalCenterTitle">Add A New Project</h5>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="form-group">
                         <label for="media">Uplaod media</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input type="file" name="media" class="form-control-file" id="exampleFormControlFile1">
                       </div>
               
         </div>

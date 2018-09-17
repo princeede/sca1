@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 	// "text/template"
@@ -63,26 +65,43 @@ type Project struct {
 	Duration    float64
 	Cost        float64
 	Sector      string
-	Time        time.Time
+	Time        int64
+	Image       string
 }
 
 func newProject(w http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
-		err := req.ParseForm()
+		err := req.ParseMultipartForm(32 << 20)
 		if err != nil {
-			fmt.Print("We good")
+			fmt.Print("We are not good")
 		}
+
+		file, handler, err := req.FormFile("media")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		defer file.Close()
+		image := handler.Filename
+		f, err := os.OpenFile("src/sca1/public/img/test/"+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		defer f.Close()
+		io.Copy(f, file)
 		title := req.FormValue("title")
 		description := req.FormValue("description")
 		duration, _ := strconv.ParseFloat(req.FormValue("duration"), 64)
 		cost, _ := strconv.ParseFloat(req.FormValue("cost"), 64)
 		sector := req.FormValue("sector")
-		time := time.Now()
+		time := time.Now().Unix()
 
 		t, err := template.ParseFiles("src/sca1/templates/temp.html", "src/sca1/templates/header.html", "src/sca1/templates/footer.html")
 		// if err != nil {
 		t.ExecuteTemplate(w, "header.html", nil)
-		t.ExecuteTemplate(w, "temp.html", Project{title, description, duration, cost, sector, time})
+		t.ExecuteTemplate(w, "temp.html", Project{title, description, duration, cost, sector, time, image})
 		t.ExecuteTemplate(w, "footer.html", nil)
 
 		fmt.Println(title)

@@ -9,15 +9,17 @@
       
               <!-- My Editing Starts from here -->
               <div class="card mb-3">
-                  <img class="card-img-top" src="public/img/banner.jpg" alt="Card image cap">
+                  <img class="card-img-top" src="public/img/test/{{.Image}}" alt="Card image cap">
                   <div class="card-body flex-container my-body">
                     <div class="my-profile-image">
-                      <img src="public/img/banner.jpg" alt="Profile picture">
+                      <img src="public/img/test/{{.Image}}" alt="Profile picture">
                       <small style="text-align: left;">Olagunju Abdul-Hammid</small>
                     </div>
                     <div class="my-body-content">
                         <div class="my-body-flex-container">
-                            <div><h5 class="card-title" style="flex-grow: 10">{{.Title}}</h5></div>
+                            <div><h5 class="card-title" style="flex-grow: 10">{{.Title}}<small><div><span class="badge badge-dark">{{.Sector}}</span></div></small></h5>
+                              <label></label>
+                            </div>
                             <div class="my-body-flex-container" style="flex-grow: 2; justify-content: flex-end; flex-wrap: wrap; max-height: 20px;">
                               <div><span class="badge badge-light" style="margin-right: 10px">Cost: ${{.Cost}}M</span></div>
                               <div><span class="badge badge-dark">Dur: {{.Duration}} months</span></div>
@@ -134,7 +136,6 @@
                               <option value="health">Health</option>
                               <option value="infrastructure">Infrastructure</option>
                               <option value="oil">Oil & Gas</option>
-                              <option></option>
                             </select>
                           </div>
                           <div class="form-group">
