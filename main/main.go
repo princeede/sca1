@@ -9,7 +9,6 @@ import (
 	"os"
 	"strconv"
 	"time"
-	// "text/template"
 )
 
 //Post is good
@@ -121,3 +120,15 @@ func myTemplate(templateName string) (temp *template.Template, err error) {
 	t, err := template.ParseFiles("src/sca1/templates/"+templateName+".html", "src/sca1/templates/header.html", "src/sca1/templates/footer.html")
 	return t, err
 }
+
+// func showTime(sec int64) (time string) {
+// 	if sec < 60 {
+// 		return strconv.FormatInt(sec, 10) + " sec ago"
+// 	}
+// 	if sec >= 60 && sec < 60*60 {
+// 		return strconv.FormatInt(int64(math.Floor(float64(sec/60))), 10) + " min ago"
+// 	}
+// 	if sec >= 60*60 && sec < 60*60*60 {
+// 		return strconv.FormatInt(int64(math.Floor(float64(sec/60*60))), 10) + " hours ago"
+// 	}
+// }
