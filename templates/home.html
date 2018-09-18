@@ -1,15 +1,13 @@
 
 
 
-    <main role="main" class="container">
-
-      <div class="starter-template">
+   
         <!-- <h1>Bootstrap starter template</h1>
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p> -->
 
         <!-- My Editing Starts from here -->
         <div class="card mb-3">
-            <img class="card-img-top" src="public/img/banner.jpg" alt="Card image cap">
+            <img class="card-img-top" src="public/img/test/{{.Image}}" alt="">
             <div class="card-body flex-container my-body">
               <div class="my-profile-image">
                 <img src="public/img/banner.jpg" alt="Profile picture">
@@ -19,8 +17,8 @@
                   <div class="my-body-flex-container">
                       <div><h5 class="card-title" style="flex-grow: 10">{{.Title}}</h5></div>
                       <div class="my-body-flex-container" style="flex-grow: 2; justify-content: flex-end; flex-wrap: wrap; max-height: 20px;">
-                        <div><span class="badge badge-light" style="margin-right: 10px">Cost: $3M</span></div>
-                        <div><span class="badge badge-dark">Dur: 6 months</span></div>
+                        <div><span class="badge badge-light" style="margin-right: 10px">Cost: ${{.Cost}}M</span></div>
+                        <div><span class="badge badge-dark">Dur: {{.Duration}} months</span></div>
                       </div>
                     </div>
                     <p class="card-text">{{.Description}}</p>
@@ -34,8 +32,9 @@
                             <div><small class="text-muted right">{{.Time}} ago</small></div>
                           </div>
                     </div> 
+
                     <!-- Replies start here -->
-                    <div class="card-body flex-container my-reply">
+                    <!-- <div class="card-body flex-container my-reply">
                         <div class="my-profile-image">
                           <img src="public/img/banner.jpg" alt="Profile picture">
                           <small style="text-align: left;">Olagunju Abdul-Hammid</small>
@@ -75,7 +74,7 @@
                                 </div>
                             </div>    
                           </div>                          
-                        </div>
+                        </div> -->
                       <!--Reply ends here...-->
 
 
@@ -87,71 +86,11 @@
 
 
           </div>
-      </div>
-
-    </main><!-- /.container -->
-
+     
     <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     Launch demo modal
   </button> -->
   
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-top" role="document">
-      <!-- Modal Form -->
-        <form method="POST" enctype="multipart/form-data" action="/new-project">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Add A New Project</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Project Title</label>
-                  <input type="text" class="form-control" name="title" id="title" placeholder="">
-                </div>                
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-                </div>                
-                  <div class="row">
-                    <div class="col-6">
-                        <label for="exampleFormControlInput1">Project Duration </label>
-                        <input type="text" class="form-control" name="duration" id="duration" placeholder="in months">
-                    </div>
-                    <div class="col-6">
-                        <label for="exampleFormControlInput1">Project Cost</label>
-                        <input type="text" class="form-control" name="cost" id="cost" placeholder="in M$">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="exampleFormControlSelect1">Sector</label>
-                      <select class="form-control" name="sector" id="sector">
-                        <option value="agriculture">Agriculture</option>
-                        <option value="education">Education</option>
-                        <option value="health">Health</option>
-                        <option value="infrastructure">Infrastructure</option>
-                        <option value="oil">Oil & Gas</option>
-                        <option></option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="media">Uplaod media</label>
-                        <input type="file" name="media" class="form-control-file" id="exampleFormControlFile1">
-                      </div>
-              
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </form>
-    </div>
-  </div>
 
    
