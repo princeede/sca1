@@ -80,25 +80,26 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 		// fmt.Println(imageName)
 		myProject := Project{title, description, duration, cost, sector, time, imageName}
 		// myComments := Comments{comments}
-		commentStmt, err := db.Prepare("SELECT * FROM comment where id=?")
+		commentStmt, err := db.Prepare("SELECT comment, action, time FROM comment where project_id=?")
 		checkerr(err)
 
 		commentRes, err := commentStmt.Query(id)
 		checkerr(err)
-		t.ExecuteTemplate(w, "home.html", myProject)
+		err = t.ExecuteTemplate(w, "home.html", myProject)
+		checkerr(err)
 
 		for commentRes.Next() {
-			var id int
-			var projectID int
 			var comment string
+			var action int
 			var time []uint8
 
-			err := commentRes.Scan(&id, &projectID, &comment, &time)
+			err := commentRes.Scan(&comment, &action, &time)
 			checkerr(err)
 
 			myComment := Comments{comment, time}
-
-			t.ExecuteTemplate(w, "comment", myComment)
+			if myComment.Comments != "" {
+				t.ExecuteTemplate(w, "comment", myComment)
+			}
 		}
 
 	}

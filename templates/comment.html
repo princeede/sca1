@@ -1,11 +1,12 @@
-<!-- Replies start here -->
-                    <div class="card-body flex-container my-reply">
+{{define "comment"}}
+{{if .}}
+    <div class="card-body flex-container my-reply">
                         <div class="my-profile-image">
                           <img src="public/img/banner.jpg" alt="Profile picture">
                           <small style="text-align: left;">Olagunju Abdul-Hammid</small>
                         </div>
                         <div class="my-body-content">
-                          <p class="card-text">{{.Comment}}</p>
+                          <p class="card-text">{{.Comments}}</p>
                           <div class="my-card-footer">
                               <div class="flex-container">
                                   <div class="flex-container-buttons">
@@ -19,4 +20,6 @@
                           </div>    
                         </div>                          
                       </div> 
+                      {{end}}
                       <!--Reply ends here...-->
+                      {{end}}
