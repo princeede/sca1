@@ -13,22 +13,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-<<<<<<< HEAD
-//Post is good
-type Post struct {
-	Title       string
-	Description string
-	Time        string
-}
-
-//Comments are either "Support" or "Against"
-type Comments struct {
-	Comments string
-	Time     []uint8
-}
-
-=======
->>>>>>> sturbon
 //Project object represent each project
 type Project struct {
 	Title       string
@@ -95,33 +79,12 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 		err = stmt.QueryRow(id).Scan(&imageName)
 		// fmt.Println(imageName)
 		myProject := Project{title, description, duration, cost, sector, time, imageName}
-<<<<<<< HEAD
-		t.ExecuteTemplate(w, "home.html", myProject)
-		// myComments := Comments{comments}
-		commentStmt, err := db.Prepare("SELECT * FROM comment where id=?")
-=======
 		// myComments := Comments{comments}
 		commentStmt, err := db.Prepare("SELECT comment, action, time FROM comment where project_id=?")
->>>>>>> sturbon
 		checkerr(err)
 
 		commentRes, err := commentStmt.Query(id)
 		checkerr(err)
-<<<<<<< HEAD
-
-		for commentRes.Next() {
-			var id int
-			var projectID int
-			var comment string
-			var time []uint8
-
-			err := commentRes.Scan(&id, &projectID, &comment, &time)
-			checkerr(err)
-
-			myComment := Comments{comment, time}
-
-			t.ExecuteTemplate(w, "comment", myComment)
-=======
 		err = t.ExecuteTemplate(w, "home.html", myProject)
 		checkerr(err)
 
@@ -137,7 +100,6 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 			if myComment.Comments != "" {
 				t.ExecuteTemplate(w, "comment", myComment)
 			}
->>>>>>> sturbon
 		}
 
 	}
