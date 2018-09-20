@@ -20,6 +20,12 @@ type Post struct {
 	Time        string
 }
 
+//Comments are either "Support" or "Against"
+type Comments struct {
+	Comments string
+	Time     []uint8
+}
+
 //Project object represent each project
 type Project struct {
 	Title       string
@@ -79,6 +85,27 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 		// fmt.Println(imageName)
 		myProject := Project{title, description, duration, cost, sector, time, imageName}
 		t.ExecuteTemplate(w, "home.html", myProject)
+		// myComments := Comments{comments}
+		commentStmt, err := db.Prepare("SELECT * FROM comment where id=?")
+		checkerr(err)
+
+		commentRes, err := commentStmt.Query(id)
+		checkerr(err)
+
+		for commentRes.Next() {
+			var id int
+			var projectID int
+			var comment string
+			var time []uint8
+
+			err := commentRes.Scan(&id, &projectID, &comment, &time)
+			checkerr(err)
+
+			myComment := Comments{comment, time}
+
+			t.ExecuteTemplate(w, "comment", myComment)
+		}
+
 	}
 
 	t.ExecuteTemplate(w, "footer.html", nil)
