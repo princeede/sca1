@@ -6,6 +6,7 @@
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p> -->
 
         <!-- My Editing Starts from here -->
+
         <div class="card mb-3">
             <img class="card-img-top" src="public/img/test/{{.Image}}" alt="">
             <div class="card-body flex-container my-body">
@@ -25,13 +26,22 @@
                     <div class="my-card-footer" style="margin-bottom: 20px;">
                         <div class="flex-container">
                             <div class="flex-container-buttons">
-                                <div><button type="button" class="btn btn-outline-dark"> <small>Support</small></button></div>
+                                <div><button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#commentModalCenter"> <small>Support</small></button></div>
                                 <div><button type="button" class="btn btn-outline-dark"><small>Against</small></button></div>
                                 <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
                             </div>                
                             <div><small class="text-muted right">{{.Time}} ago</small></div>
                           </div>
                     </div> 
+
+<<<<<<< HEAD
+                    
+=======
+                    <!-- Replies start here -->
+                    {{template "comment"}}
+                    
+                      <!--Reply ends here...-->
+>>>>>>> sturbon
 
                     
 
@@ -46,7 +56,7 @@
           </div>
      
     <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProjectModalCenter">
     Launch demo modal
   </button> -->
   

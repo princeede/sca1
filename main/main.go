@@ -13,6 +13,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+<<<<<<< HEAD
 //Post is good
 type Post struct {
 	Title       string
@@ -26,6 +27,8 @@ type Comments struct {
 	Time     []uint8
 }
 
+=======
+>>>>>>> sturbon
 //Project object represent each project
 type Project struct {
 	Title       string
@@ -37,12 +40,19 @@ type Project struct {
 	Image       string
 }
 
+//Comments are either "Support" or "Against"
+type Comments struct {
+	Comments string
+	Time     []uint8
+}
+
 func main() {
 	http.Handle("/public/", http.StripPrefix(("/public/"), http.FileServer(http.Dir("src/sca1/public"))))
 	http.HandleFunc("/", myHomePage)
 	http.HandleFunc("/signup", signup)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/new-project", newProject)
+	http.HandleFunc("/comment", comment)
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal("ListenAndServer: ", err)
@@ -59,11 +69,12 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 	rows, err := db.Query("SELECT * FROM project ORDER BY time DESC")
 	checkerr(err)
 
-	t, _ := template.ParseFiles("src/sca1/templates/home.html", "src/sca1/templates/header.html", "src/sca1/templates/footer.html")
-	// Description := "Etiam mollis lectus et laoreet faucibus. Suspendisse facilisis tellus velit, varius scelerisque leo sollicitudin at. Aliquam erat volutpat. Sed et varius quam. Cras aliquam odio a odio ornare, ut dapibus tortor cursus. Vestibulum eget erat libero. Duis ornare ligula ac elit gravida, at hendrerit dolor cursus. Proin sit amet magna eros. Proin posuere nibh a consectetur aliquam. Aenean non ligula faucibus urna finibus blandit a ut ligula."
-	// Title := "Trans Mountain's delay costs Canadians $40 million every day."
+	t, _ := template.ParseFiles("src/sca1/templates/home.html", "src/sca1/templates/header.html", "src/sca1/templates/footer.html", "src/sca1/templates/comment.html")
 
-	t.ExecuteTemplate(w, "header.html", nil)
+	err = t.ExecuteTemplate(w, "header.html", nil)
+	checkerr(err)
+
+	//iterating over the database to pull out Projects data and supplying it to the front-end...
 	for rows.Next() {
 		var id int
 		var uid int
@@ -84,13 +95,19 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 		err = stmt.QueryRow(id).Scan(&imageName)
 		// fmt.Println(imageName)
 		myProject := Project{title, description, duration, cost, sector, time, imageName}
+<<<<<<< HEAD
 		t.ExecuteTemplate(w, "home.html", myProject)
 		// myComments := Comments{comments}
 		commentStmt, err := db.Prepare("SELECT * FROM comment where id=?")
+=======
+		// myComments := Comments{comments}
+		commentStmt, err := db.Prepare("SELECT comment, action, time FROM comment where project_id=?")
+>>>>>>> sturbon
 		checkerr(err)
 
 		commentRes, err := commentStmt.Query(id)
 		checkerr(err)
+<<<<<<< HEAD
 
 		for commentRes.Next() {
 			var id int
@@ -104,6 +121,23 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 			myComment := Comments{comment, time}
 
 			t.ExecuteTemplate(w, "comment", myComment)
+=======
+		err = t.ExecuteTemplate(w, "home.html", myProject)
+		checkerr(err)
+
+		for commentRes.Next() {
+			var comment string
+			var action int
+			var time []uint8
+
+			err := commentRes.Scan(&comment, &action, &time)
+			checkerr(err)
+
+			myComment := Comments{comment, time}
+			if myComment.Comments != "" {
+				t.ExecuteTemplate(w, "comment", myComment)
+			}
+>>>>>>> sturbon
 		}
 
 	}
@@ -131,7 +165,6 @@ func login(w http.ResponseWriter, req *http.Request) {
 }
 
 //Handels requests for adding a new project
-
 func newProject(w http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
 		err := req.ParseMultipartForm(32 << 20)
@@ -183,38 +216,38 @@ func newProject(w http.ResponseWriter, req *http.Request) {
 		checkerr(err)
 		fmt.Println(resImg.LastInsertId())
 
-		// t, err := template.ParseFiles("src/sca1/templates/temp.html", "src/sca1/templates/header.html", "src/sca1/templates/footer.html")
-		// // if err != nil {
-		// t.ExecuteTemplate(w, "header.html", nil)
-		// t.ExecuteTemplate(w, "temp.html", Project{title, description, duration, cost, sector, time, image})
-		// t.ExecuteTemplate(w, "footer.html", nil)
-
 		myHomePage(w, req)
-
-		// fmt.Println(title)
-		// fmt.Println(description)
-		// fmt.Println(duration)
-		// fmt.Println(cost)
-		// fmt.Println(sector)
-		// fmt.Println(time)
 
 	} else {
 		fmt.Println("Method is get...")
 	}
 }
 
-// func showTime(sec int64) (time string) {
-// 	if sec < 60 {
-// 		return strconv.FormatInt(sec, 10) + " sec ago"
-// 	}
-// 	if sec >= 60 && sec < 60*60 {
-// 		return strconv.FormatInt(int64(math.Floor(float64(sec/60))), 10) + " min ago"
-// 	}
-// 	if sec >= 60*60 && sec < 60*60*60 {
-// 		return strconv.FormatInt(int64(math.Floor(float64(sec/60*60))), 10) + " hours ago"
-// 	}
-// }
+//A func that handls comment
+func comment(w http.ResponseWriter, req *http.Request) {
+	if req.Method == "POST" {
+		err := req.ParseForm()
+		checkerr(err)
 
+		comment := req.FormValue("comment")
+
+		db, err := sql.Open("mysql", "root:atinuke22@/test")
+		checkerr(err)
+		defer db.Close()
+
+		stmt, err := db.Prepare("INSERT comment SET project_id=?, comment=?")
+		checkerr(err)
+
+		res, err := stmt.Exec(11, comment)
+		checkerr(err)
+		fmt.Println(res.LastInsertId())
+
+		myHomePage(w, req)
+
+	}
+}
+
+//a simple func to checkerr
 func checkerr(err error) {
 	if err != nil {
 		panic(err)
