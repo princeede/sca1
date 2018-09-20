@@ -193,6 +193,9 @@ func comment(w http.ResponseWriter, req *http.Request) {
 		checkerr(err)
 
 		comment := req.FormValue("comment")
+		projectID := req.FormValue("project_id")
+		fmt.Println("The id is: ", projectID)
+		// checkerr(err)
 
 		db, err := sql.Open("mysql", "root:atinuke22@/test")
 		checkerr(err)
@@ -201,7 +204,7 @@ func comment(w http.ResponseWriter, req *http.Request) {
 		stmt, err := db.Prepare("INSERT comment SET project_id=?, comment=?")
 		checkerr(err)
 
-		res, err := stmt.Exec(11, comment)
+		res, err := stmt.Exec(3, comment)
 		checkerr(err)
 		fmt.Println(res.LastInsertId())
 
