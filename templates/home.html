@@ -26,8 +26,8 @@
                     <div class="my-card-footer" style="margin-bottom: 20px;">
                         <div class="flex-container">
                             <div class="flex-container-buttons">
-                                <div><button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#commentModalCenter"> <small>Support</small></button></div>
-                                <div><button type="button" class="btn btn-outline-dark"><small>Against</small></button></div>
+                                <div><button type="button" id="supportButton{{.ID}}" class="btn btn-outline-dark supportButton" data-some="{{.ID}}" data-toggle="modal"  data-target="#commentModalCenter"> <small>Support</small></button></div>
+                                <div><button type="button" class="btn btn-outline-dark" data-toggle="modal"  data-target="#commentModalCenter"><small>Against</small></button></div>
                                 <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
                             </div>                
                             <div><small class="text-muted right">{{.Time}} ago</small></div>
@@ -38,13 +38,7 @@
                     {{template "comment"}}
                     
                       <!--Reply ends here...-->
-
-                    
-
-
-              </div>   
-              
-              
+                </div>         
               
             </div>
 
@@ -55,6 +49,9 @@
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProjectModalCenter">
     Launch demo modal
   </button> -->
+  
+
+        
   
 
    

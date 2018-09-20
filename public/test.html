@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    <div class="my-card-footer" style="margin-bottom: 20px;">
+        <div class="flex-container">
+            <div class="flex-container-buttons">
+                <div><button type="button" id="supportButton" class="btn btn-outline-dark supportButton" data-some="1" data-toggle="modal"  data-target="#commentModalCenter"> <small>Support</small></button></div>
+                <div><button type="button" class="btn btn-outline-dark" data-toggle="modal"  data-target="#commentModalCenter"><small>Against</small></button></div>
+                <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+            </div>                
+            <div><small class="text-muted right">{{.Time}} ago</small></div>
+          </div>
+    </div> 
+
+    <div class="my-card-footer" style="margin-bottom: 20px;">
+        <div class="flex-container">
+            <div class="flex-container-buttons">
+                <div><button type="button" id="supportButton" class="btn btn-outline-dark supportButton" data-some="2" data-toggle="modal"  data-target="#commentModalCenter"> <small>Support</small></button></div>
+                <div><button type="button" class="btn btn-outline-dark" data-toggle="modal"  data-target="#commentModalCenter"><small>Against</small></button></div>
+                <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+                <input type="hidden" name="">
+            </div>                
+            <div><small class="text-muted right">{{.Time}} ago</small></div>
+          </div>
+    </div> 
+
+    <div class="my-card-footer" style="margin-bottom: 20px;">
+        <div class="flex-container">
+            <div class="flex-container-buttons">
+                <div><button type="button" id="supportButton" class="btn btn-outline-dark supportButton" data-some="3" data-toggle="modal"  data-target="#commentModalCenter"> <small>Support</small></button></div>
+                <div><button type="button" class="btn btn-outline-dark" data-toggle="modal"  data-target="#commentModalCenter"><small>Against</small></button></div>
+                <div><button type="button" class="btn btn-outline-danger"><small>Report</small></button></div>
+            </div>                
+            <div><small class="text-muted right">{{.Time}} ago</small></div>
+          </div>
+    </div> 
+
+
+
+
+
+
+
+
+
+     <!-- Modal support/aggainst modal-->
+     <div class="modal fade" id="commentModalCenter" tabindex="-1" role="dialog" aria-labelledby="commentModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-top" role="document">
+          <!-- Modal Form -->
+          <form name="comment" method="POST" enctype="multipart/form-data" action="">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="commentModalCenterTitle">Add a comment</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">              
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Description</label>
+                      <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      var myId;
+      buttonTestArr = $(".supportButton").click(function(event){
+        myId = event.currentTarget.dataset["some"]
+      });
+
+      var myForm =  document.querySelector("form")
+      document.forms[0].addEventListener("submit", e => {
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "text");
+        x.name = "project_id";
+        x.value = myId
+      })
+      
+    </script>
+  </body>
+</html>
+
+</body>
+</html>

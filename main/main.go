@@ -15,6 +15,7 @@ import (
 
 //Project object represent each project
 type Project struct {
+	ID          int
 	Title       string
 	Description string
 	Duration    float64
@@ -78,7 +79,7 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 		var imageName string
 		err = stmt.QueryRow(id).Scan(&imageName)
 		// fmt.Println(imageName)
-		myProject := Project{title, description, duration, cost, sector, time, imageName}
+		myProject := Project{id, title, description, duration, cost, sector, time, imageName}
 		// myComments := Comments{comments}
 		commentStmt, err := db.Prepare("SELECT comment, action, time FROM comment where project_id=?")
 		checkerr(err)
