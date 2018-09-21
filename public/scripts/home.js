@@ -1,19 +1,26 @@
 (function (){
     var myId;
+    var myAction;
     buttonTestArr = $(".supportButton").click(function(event){
         myId = event.currentTarget.dataset["some"]
-        console.log(myId)
+        myAction = event.currentTarget.dataset["action"]
     });
 
     var myForm =  document.querySelector(".supportForm");
-    console.log(myForm)
     myForm.addEventListener("submit", e => {
-        var x = document.createElement("INPUT");
-        x.setAttribute("type", "number");
-        x.name = "project_id";
-        x.value = myId;
-        e.currentTarget.insertBefore(x, e.currentTarget.childNodes[0])
-        console.log(e.currentTarget);
-        // e.preventDefault();
+        var id = document.createElement("INPUT");
+        id.setAttribute("type", "number");
+        id.name = "project_id";
+        id.value = myId;
+        e.currentTarget.insertBefore(id, e.currentTarget.childNodes[3])
+
+        var action = document.createElement("input")
+        action.setAttribute("text", myAction)
+        action.name = "action";
+        action.value = myAction;
+        e.currentTarget.insertBefore(action, e.currentTarget.childNodes[3])
+
+
     })
+
 })()

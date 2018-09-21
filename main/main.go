@@ -192,19 +192,26 @@ func comment(w http.ResponseWriter, req *http.Request) {
 		err := req.ParseForm()
 		checkerr(err)
 
+		for k, v := range req.Form {
+			fmt.Printf("%s: %s\n", k, v)
+		}
 		comment := req.FormValue("comment")
 		projectID := req.FormValue("project_id")
-		fmt.Println("The id is: ", projectID)
+		action := req.FormValue("action")
+		// actio
+
+		fmt.Println("The id is: " + projectID)
+		fmt.Println("action is :" + action)
 		// checkerr(err)
 
 		db, err := sql.Open("mysql", "root:atinuke22@/test")
 		checkerr(err)
 		defer db.Close()
 
-		stmt, err := db.Prepare("INSERT comment SET project_id=?, comment=?")
+		stmt, err := db.Prepare("INSERT comment SET project_id=?, comment=?, action=?")
 		checkerr(err)
 
-		res, err := stmt.Exec(3, comment)
+		res, err := stmt.Exec(projectID, comment, action)
 		checkerr(err)
 		fmt.Println(res.LastInsertId())
 
