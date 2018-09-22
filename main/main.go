@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"encoding/binary"
 	"fmt"
 	"html/template"
 	"io"
@@ -9,6 +10,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -47,7 +49,7 @@ func main() {
 //Handels requests to the hompage
 
 func myHomePage(w http.ResponseWriter, req *http.Request) {
-
+	//Query the database to get all posts
 	db, err := sql.Open("mysql", "root:atinuke22@tcp(127.0.0.1:3306)/test")
 	checkerr(err)
 	defer db.Close()
@@ -59,7 +61,7 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 	err = t.ExecuteTemplate(w, "header.html", nil)
 	checkerr(err)
 
-	//iterating over the database to pull out Projects data and supplying it to the front-end...
+	//iterating over the database row to pull out Projects data and supplying it to the front-end...
 	for rows.Next() {
 		var id int
 		var uid int
@@ -78,9 +80,12 @@ func myHomePage(w http.ResponseWriter, req *http.Request) {
 		checkerr(err)
 		var imageName string
 		err = stmt.QueryRow(id).Scan(&imageName)
-		// fmt.Println(imageName)
+
 		myProject := Project{id, title, description, duration, cost, sector, time, imageName}
-		// myComments := Comments{comments}
+		//////////////////////////////////
+		fmt.Println(int64(binary.BigEndian.Uint64(time)))
+		displayTime(int64(binary.BigEndian.Uint64(time)))
+
 		commentStmt, err := db.Prepare("SELECT comment, action, time FROM comment where project_id=?")
 		checkerr(err)
 
@@ -218,6 +223,11 @@ func comment(w http.ResponseWriter, req *http.Request) {
 		myHomePage(w, req)
 
 	}
+}
+
+//A function to manipulate the time
+func displayTime(thatTime int64) {
+	fmt.Println(time.Unix(thatTime, 0))
 }
 
 //a simple func to checkerr
